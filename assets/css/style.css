@@ -6,15 +6,31 @@
     box-sizing: border-box;
 }
 
+:root {
+    --card-color-primary: #f7dd43;
+    --card-title-border-color: #746615;
+    --card-bg-color: #1D1C19;
+    --bg: url(/assets/img/background.svg);
+}
+
+body.blue {
+    --card-color-primary: #f7dd43;
+    --card-title-border-color: #338af3;
+    --card-bg-color: #202024;
+}
+
+body.green {
+    --card-color-primary: #f7dd43;
+    --card-title-border-color: #047c3f;
+    --card-bg-color: #1A1F1B;
+}
+
 ul {
     list-style: none;
 }
 
 body {
-    background-color: #121214;
-    background-image: url(/assets/img/background.svg);
-    background-position-x: center;
-    background-position-y: -715px;
+    background: #121214 url(--bg) no-repeat top center/cover;
 }
 
 body * {
@@ -23,7 +39,9 @@ body * {
 
 #app {
     width: fit-content;
-    margin: 52px auto;
+    margin: auto;
+    padding-top: 52px;
+    padding-bottom: 40px;
 }
 
 header {
@@ -31,7 +49,8 @@ header {
     justify-content: center;
     margin-bottom: 63px;
 }
-#cards{
+
+#cards {
     display: flex;
     flex-direction: column;
     gap: 32px;
@@ -40,8 +59,8 @@ header {
 .card {
     padding: 32px 23px;
     text-align: center;
-    background-color: #1d1c19;
-    border-bottom: 2px solid #f7ff43;
+    background-color: var(--card-bg-color);
+    border-bottom: 2px solid var(--card-title-border-color);
     border-radius: 6px;
 }
 
@@ -54,8 +73,8 @@ header {
     display: flex;
     align-items: center;
     gap: 16px;
-    color: #f7ff43;
-    border: 1px solid;
+    color: var(--card-color-primary);
+    border: 1px solid var(--card-title-border-color);
 }
 
 .card h2 span {
@@ -90,4 +109,37 @@ header {
     line-height: 125%;
     text-align: center;
     color: #e1e1e6;
+}
+
+.card ul li strong:hover,
+.card ul li img:hover {
+    transform: scale(1.1);
+}
+
+.card ul li strong,
+.card ul li img {
+    transition: transform .4s;
+}
+
+.card {
+    opacity: 0;
+    animation: appear 2s forwards;
+}
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@media (min-width: 401px) {
+    #cards {
+        max-width: 670px;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
 }
